@@ -3,6 +3,7 @@ import Moment from 'moment';
 
 function App() {
 
+  // Initial values
   const initStyle = {
     textAlign: 'center',
     fontFamily: 'Helvetica, Arial, sans-serif',
@@ -24,12 +25,15 @@ function App() {
   initFormat = 'h:mm:ss A',
   initTime = Moment().format(initFormat);
 
+  // State
   const [style, setStyle] = useState(initStyle);
   const [hrs, setHrs] = useState(initHrs);
   const [time, setTime] = useState(initTime);
   const [format, setFormat] = useState(initFormat);
 
+  // Hooks
   useEffect(() => {
+    // Repeat once every second
     const interval = setInterval(() => {
       const updatedStyle = {...style};
       const updatedHrs = new Date().getHours();
@@ -70,12 +74,14 @@ function App() {
     };
   }, [format, hrs, time, style]);
 
+  // Actions
   const switchFormat = () => {
     let updatedFormat = format;
     (updatedFormat === 'h:mm:ss A') ? updatedFormat = 'H:mm:ss' : updatedFormat = 'h:mm:ss A';
     setFormat(updatedFormat);
   };
 
+  // Render
   return (
     <h1 onClick={switchFormat} style={style}>{time}</h1>
   );
