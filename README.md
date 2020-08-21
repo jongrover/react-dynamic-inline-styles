@@ -1,6 +1,4 @@
-# react-dynamic-inline-styles
-
-## React clock
+#  React Clock
 
 <img src="public/screenshot.png">
 
