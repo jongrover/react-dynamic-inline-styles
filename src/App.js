@@ -13,25 +13,30 @@ function App() {
     height: '100%',
     width: '100%',
     lineHeight: 0,
-    padding: 'calc(90vh / 2) 0 0',
+    padding: '45vh 0 0',
     margin: 0,
     backgroundColor: 'rgb(255,255,255)',
     transition: 'background-color 2s',
-    color: 'rgb(255,255,255)'
+    color: 'rgb(255,255,255)',
+    cursor: 'pointer'
   },
   initHrs = new Date().getHours(),
-  initTime = Moment().format('LTS');
+  initFormat = 'h:mm:ss A',
+  initTime = Moment().format(initFormat);
 
   const [style, setStyle] = useState(initStyle);
   const [hrs, setHrs] = useState(initHrs);
   const [time, setTime] = useState(initTime);
+  const [format, setFormat] = useState(initFormat);
 
   useEffect(() => {
     const interval = setInterval(() => {
       const updatedStyle = {...style};
       const updatedHrs = new Date().getHours();
-      const updatedTime = Moment().format('LTS');
-      switch (updatedHrs) {
+      const updatedTime = Moment().format(format);
+      setHrs(updatedHrs);
+      setTime(updatedTime);
+      switch (hrs) {
         case 0:  updatedStyle.backgroundColor = 'rgb(6,7,9)';       break; // 12 AM
         case 1:  updatedStyle.backgroundColor = 'rgb(15,23,36)';    break; //  1 AM
         case 2:  updatedStyle.backgroundColor = 'rgb(19,27,46)';    break; //  2 AM
@@ -59,16 +64,20 @@ function App() {
         default: updatedStyle.backgroundColor = 'rgb(127,127,127)';
       }
       setStyle(updatedStyle);
-      setHrs(updatedHrs);
-      setTime(updatedTime);
     }, 1000);
     return () => {
       clearInterval(interval);
     };
-  }, []);
+  }, [format, hrs, time, style]);
+
+  const switchFormat = () => {
+    let updatedFormat = format;
+    (updatedFormat === 'h:mm:ss A') ? updatedFormat = 'H:mm:ss' : updatedFormat = 'h:mm:ss A';
+    setFormat(updatedFormat);
+  };
 
   return (
-    <h1 style={style}>{time}</h1>
+    <h1 onClick={switchFormat} style={style}>{time}</h1>
   );
 }
 
