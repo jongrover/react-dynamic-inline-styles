@@ -4,7 +4,7 @@
 
 <img src="public/screenshot.png">
 
-Demonstrate a simple React v16 (2020) App using functional components, UseState, useEffect, to dynamically change background styles on a clock that updates every second to reflect the color of the sky based on the hr of the day.
+Demonstrate a simple React v16 (2020) App using functional components, UseState, useEffect, to dynamically change background styles on a clock that updates every second to reflect the color of the sky based on the hr of the day. Clicking the time toggles between 12hr and 24hr formats.
 
 <img src="public/timesky.jpg">
 
