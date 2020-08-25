@@ -27,6 +27,7 @@ class App extends React.Component {
       format: 'h:mm:ss A',
       time: Moment().format('h:mm:ss A')
     };
+    this.switchFormat = this.switchFormat.bind(this, this.state);
   }
 
   // Hooks
@@ -88,7 +89,7 @@ class App extends React.Component {
   // Render
   render() {
     return (
-      <h1 onClick={this.switchFormat.bind(this, this.state)} style={this.state.style}>{this.state.time}</h1>
+      <h1 onClick={this.switchFormat} style={this.state.style}>{this.state.time}</h1>
     );
   }
 }
