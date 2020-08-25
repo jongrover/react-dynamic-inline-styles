@@ -27,7 +27,6 @@ class App extends React.Component {
       format: 'h:mm:ss A',
       time: Moment().format('h:mm:ss A')
     };
-    this.switchFormat = this.switchFormat.bind(this, this.state);
   }
 
   // Hooks
@@ -79,8 +78,8 @@ class App extends React.Component {
 
   // Actions
   switchFormat(state) {
-    let updatedFormat = this.state.format;
-    (updatedFormat === 'h:mm:ss A') ? updatedFormat = 'H:mm:ss' : updatedFormat = 'h:mm:ss A';
+    let updatedFormat;
+    (state.format === 'h:mm:ss A') ? updatedFormat = 'H:mm:ss' : updatedFormat = 'h:mm:ss A';
     this.setState((state) => {
       return { ...state, format: updatedFormat };
     });
@@ -89,7 +88,7 @@ class App extends React.Component {
   // Render
   render() {
     return (
-      <h1 onClick={this.switchFormat} style={this.state.style}>{this.state.time}</h1>
+      <h1 onClick={this.switchFormat.bind(this, this.state)} style={this.state.style}>{this.state.time}</h1>
     );
   }
 }
